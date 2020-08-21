@@ -21,7 +21,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logo1.png';
 
 import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
 
@@ -143,7 +143,7 @@ const SignUp: React.FC = () => {
       </KeyboardAvoidingView>
 
       <BackToSignIn onPress={() => navigation.goBack()}>
-        <Icon name="arrow-left" size={20} color="#fff" />
+        <Icon name="arrow-left" size={20} color="#2BC4DA" />
         <BackToSignInText>Voltar para logon</BackToSignInText>
       </BackToSignIn>
     </>

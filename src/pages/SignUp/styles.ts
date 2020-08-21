@@ -7,13 +7,14 @@ export const Container = styled.View`
   align-items: center;
   justify-content: center;
   padding: 0 30px ${Platform.OS === 'ios' ? 40 : 150}px;
+  margin-top: 50px;
 `;
 
 export const Title = styled.Text`
   font-size: 24px;
-  color: #f4ede8;
+  color: #2BC4DA;
   font-family: 'RobotoSlab-Medium';
-  margin: 64px 0 24px;
+  margin: 0px 0 24px;
 `;
 
 export const BackToSignIn = styled.TouchableOpacity`
@@ -21,9 +22,9 @@ export const BackToSignIn = styled.TouchableOpacity`
   left: 0;
   bottom: 0;
   right: 0%;
-  background: #312e38;
+  background: #fff;
   border-top-width: 1px;
-  border-color: #232129;
+  border-color: #2BC4DA;
   padding: 16px 0 ${16 + getBottomSpace()}px;
   flex-direction: row;
   justify-content: center;
@@ -31,7 +32,7 @@ export const BackToSignIn = styled.TouchableOpacity`
 `;
 
 export const BackToSignInText = styled.Text`
-  color: #fff;
+  color: #2BC4DA;
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   margin-left: 16px;
