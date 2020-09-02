@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import {Platform} from 'react-native'
+import {Platform, Alert} from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useAuth } from '../../hooks/auth';
@@ -21,7 +21,7 @@ import {
   OpenDatePickerButtonText
 } from './styles'
 import api from '../../services/api';
-
+import { RectButton } from 'react-native-gesture-handler';
 interface RouteParams {
   providerId: string;
 }
@@ -80,6 +80,7 @@ const CreateAppointment: React.FC = () => {
   }, [])
 
   const handleDateChanged = useCallback((event: any, date: Date | undefined) => {
+    navigateBack()
     if(Platform.OS === 'android'){
       setShowDateTimePicker(false)
     }
@@ -87,6 +88,9 @@ const CreateAppointment: React.FC = () => {
     if(date){
       setSelectedDate(date)
     }
+    navigateBack()
+
+    Alert.alert("Concluído", "O seu agendamento foi realizado com sucesso!")
   }, [])
 
   return (
@@ -96,7 +100,7 @@ const CreateAppointment: React.FC = () => {
           <Icon name="chevron-left" size={24} color="#999591" />
         </BackButton>
 
-        <HeaderTitle>Cabeleireiros</HeaderTitle>
+        <HeaderTitle>Médicos</HeaderTitle>
 
         <UserAvatar source={{ uri: user.avatar_url }}></UserAvatar>
       </Header>
@@ -104,10 +108,21 @@ const CreateAppointment: React.FC = () => {
       <ProvidersListContainer>
         <ProvidersList data={providers} keyExtractor={provider => provider.id} horizontal showsHorizontalScrollIndicator={false}
           renderItem={({ item: provider }) => (
-            <ProviderContainer onPress={() => handleSelectProvider(provider.id)} selected={provider.id === selectedProvider}>
+            <RectButton
+            style={{
+              borderRadius: 5, paddingRight: 10, marginTop: 10, marginBottom: 10, backgroundColor: provider.id === selectedProvider ? '#18CBC1' : '#fff', alignItems: 'center', marginRight: 16, flexDirection: 'row', shadowColor: "#131313",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+            }}
+            onPress={() => handleSelectProvider(provider.id)}>
               <ProviderAvatar source={{ uri: provider.avatar_url }} />
               <ProviderName>{provider.name}</ProviderName>
-            </ProviderContainer>
+            </RectButton>
           )} />
       </ProvidersListContainer>
 

@@ -13,16 +13,18 @@ flex: 1;
 
 export const Header = styled.View`
 padding: 24px;
-background: #28262e;
+background: #fff;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+border-bottom-width: 2px;
+border-bottom-color: #131313;
 `;
 
 export const BackButton = styled.TouchableOpacity``;
 
 export const HeaderTitle = styled.Text`
-color: #f5ede8;
+color: #131313;
 font-family: 'RobotSlab-Medium';
 font-size: 20px;
 margin-left: 16px;
@@ -37,11 +39,11 @@ margin-left: auto;
 
 export const ProvidersList = styled(
   FlatList as new () => FlatList<Provider>)`
-  padding: 32px 24px;
+  padding: 32px 14px;
   `;
 
 export const ProvidersListContainer = styled.View`
-height: 112px;
+height: 132px;
 `;
 
 export const ProviderContainer = styled(RectButton)<ProviderContainerProps>`
@@ -63,12 +65,12 @@ export const ProviderName = styled.Text`
 margin-left: 8px;
 font-family: 'RobotoSlab-Medium';
 font-size: 16px;
-color: #f4ede8;
+color: #131313;
 `;
 
 export const Title = styled.Text`
 font-family: 'RoboSlab-Medium';
-color: #f4ede8;
+color: #131313;
 font-size: 24px;
 margin: 0 24px 24px;
 `;
@@ -77,7 +79,7 @@ export const Calendar = styled.View``;
 
 export const OpenDatePickerButton = styled(RectButton)`
 height: 46px;
-background: #ff9000;
+background: #18CBC1;
 border-radius: 10px;
 align-items: center;
 margin: 0 24px;
