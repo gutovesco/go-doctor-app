@@ -9,26 +9,28 @@ flex: 1;
 
 export const Header = styled.View`
 padding: 24px;
-background: #28262e;
+background: #fff;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+border-bottom-width: 2px;
+border-bottom-color: #131313;
 `;
 
 export const HeaderTitle = styled.Text`
-color: #f4ede8;
+color: #131313;
 font-size: 20px;
 font-family: 'RobotoSlab-Regular';
 line-height: 28px;
 `;
 
 export const UserName = styled.Text`
-color: #ff9000;
+color: #18CBC1;
 font-family: 'RobotoSlab-Medium';
 `;
 
 export const ProfileButton = styled.TouchableOpacity`
-
+margin-left: 10px;
 `;
 
 export const UserAvatar = styled.Image`
@@ -39,12 +41,12 @@ border-radius: 28px;
 
 export const ProvidersList = styled(
   FlatList as new () => FlatList<Provider>)`
-  padding: 32px 24px 16px;
+  padding: 32px 0px 10px 0px;
   `;
 
 
 export const ProviderContainer = styled(RectButton)`
-background: #3e3b47;
+background: #f7f7f7;
 border-radius: 10px;
 padding: 20px;
 margin-bottom: 16px;
@@ -66,7 +68,7 @@ margin-left: 20px;
 export const ProviderName = styled.Text`
 font-family: 'RobotoSlab-Medium';
 font-size: 18px;
-color: #f4ede8;
+color: #131313;
 `;
 
 export const ProviderMeta = styled.View`
@@ -84,6 +86,7 @@ font-family: 'RobotoSlab-Medium';
 export const ProvidersListTitle = styled.Text`
 font-size: 24px;
 margin-bottom: 24px;
-color: #f4ede8;
+margin-left: 20px;
+color: #2BC4DA;
 font-family: 'RobotoSlab-Medium';
 `;

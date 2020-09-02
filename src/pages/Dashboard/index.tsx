@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Button } from 'react-native';
-import {Container, Header, HeaderTitle, UserName, ProfileButton, UserAvatar, ProvidersList, ProvidersListTitle, ProviderContainer, ProviderAvatar, ProviderInfo, ProviderName, ProviderMeta, ProviderMetaText} from './styles'
+import { View, Button, Text } from 'react-native';
+import { Container, Header, HeaderTitle, UserName, ProfileButton, UserAvatar, ProvidersList, ProvidersListTitle, ProviderContainer, ProviderAvatar, ProviderInfo, ProviderName, ProviderMeta, ProviderMetaText } from './styles'
 import { useAuth } from '../../hooks/auth';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import Icon from 'react-native-vector-icons/Feather'
+import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 
-export interface Provider{
+export interface Provider {
   id: string;
   name: string;
   avatar_url: string;
@@ -14,7 +15,7 @@ export interface Provider{
 
 const Dashboard: React.FC = () => {
   const { signOut, user } = useAuth();
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   const [providers, setProviders] = useState<Provider[]>([])
 
   useEffect(() => {
@@ -24,52 +25,69 @@ const Dashboard: React.FC = () => {
   }, [])
 
   const navigateToProfile = useCallback(() => {
-    //navigate('Profile');
-    signOut()
+    navigate('Profile');
   }, [signOut])
 
   const navigateToCreateAppointment = useCallback((providerId: string) => {
-    navigate('CreateAppointment', {providerId});
+    navigate('CreateAppointment', { providerId });
   }, [navigate])
 
   return (
-    <Container>
-      <Header>
-        <HeaderTitle>
-          Bem-vindo, {"\n"}
-          <UserName>{user.name}</UserName>
-        </HeaderTitle>
-        <ProfileButton onPress={navigateToProfile}>
-          <UserAvatar source={{uri: user.avatar_url}}></UserAvatar>
-        </ProfileButton>
-      </Header>
+    <>
+      <Container>
+        <Header>
+          <HeaderTitle>
+            Bem-vindo, {"\n"}
+            <UserName>{user.name}</UserName>
+          </HeaderTitle>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <TouchableOpacity onPress={() => signOut()}>
+              <Text style={{color: '#131313', fontSize: 17}}>Sair</Text>
+            </TouchableOpacity>
+            <ProfileButton onPress={navigateToProfile}>
+              <UserAvatar source={{ uri: user.avatar_url }}></UserAvatar>
+            </ProfileButton>
+          </View>
 
-      <ProvidersList data={providers} keyExtractor={(provider) => provider.id}
-      ListHeaderComponent={
-        <ProvidersListTitle>Cabeleireiros</ProvidersListTitle>
-      }
-      renderItem={({item}) => (
-        <ProviderContainer onPress={() => navigateToCreateAppointment(item.id)}>
-          <ProviderAvatar source={{uri: item.avatar_url}}></ProviderAvatar>
+        </Header>
 
-          <ProviderInfo>
-            <ProviderName>{item.name}</ProviderName>
+        <ProvidersList data={providers} keyExtractor={(provider) => provider.id}
+          ListHeaderComponent={
+            <ProvidersListTitle>Médicos</ProvidersListTitle>
+          }
+          renderItem={({ item }) => (
+            <RectButton
+              style={{
+                borderRadius: 10, width: '90%', alignSelf: 'center', padding: 20, backgroundColor: '#fff', alignItems: 'center', marginBottom: 16, flexDirection: 'row', shadowColor: "#000", shadowOffset: {
+                  width: 0,
+                  height: 5,
+                }, shadowOpacity: 0.36, shadowRadius: 6.68, elevation: 11,
+              }}
+              onPress={() => navigateToCreateAppointment(item.id)}>
 
-            <ProviderMeta>
-              <Icon name="calendar" size={14} color="#ff9000"/>
-              <ProviderMetaText>Segudna à sexta</ProviderMetaText>
-            </ProviderMeta>
+              <ProviderAvatar source={{ uri: item.avatar_url }}></ProviderAvatar>
 
-            <ProviderMeta>
-              <Icon name="clock" size={14} color="#ff9000"/>
-              <ProviderMetaText>8h às 18h</ProviderMetaText>
-            </ProviderMeta>
+              <ProviderInfo>
+                <ProviderName>{item.name}</ProviderName>
 
-          </ProviderInfo>
-        </ProviderContainer>
-      )}
-      ></ProvidersList>
-    </Container>
+                <ProviderMeta>
+                  <Icon name="calendar" size={14} color="#18CBC1" />
+                  <ProviderMetaText>Segunda à sexta</ProviderMetaText>
+                </ProviderMeta>
+
+                <ProviderMeta>
+                  <Icon name="clock" size={14} color="#18CBC1" />
+                  <ProviderMetaText>8h às 18h</ProviderMetaText>
+                </ProviderMeta>
+
+              </ProviderInfo>
+            </RectButton>
+          )}
+        ></ProvidersList>
+      </Container>
+
+
+    </>
   );
 };
 

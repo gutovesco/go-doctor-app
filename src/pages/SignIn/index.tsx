@@ -91,8 +91,6 @@ const SignIn: React.FC = () => {
         enabled
       >
         <ScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex: 1 }}
         >
           <Container>
             <Image testID="login-image" source={logoImg} />
