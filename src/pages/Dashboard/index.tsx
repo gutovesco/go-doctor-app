@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import Icon from 'react-native-vector-icons/Feather'
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+import profile from '../../assets/profile.png'
 
 export interface Provider {
   id: string;
@@ -32,6 +33,8 @@ const Dashboard: React.FC = () => {
     navigate('CreateAppointment', { providerId });
   }, [navigate])
 
+  const defaultImage = 'https://f0.pngfuel.com/png/981/645/default-profile-picture-png-clip-art.png'
+
   return (
     <>
       <Container>
@@ -45,7 +48,7 @@ const Dashboard: React.FC = () => {
               <Text style={{color: '#131313', fontSize: 17}}>Sair</Text>
             </TouchableOpacity>
             <ProfileButton onPress={navigateToProfile}>
-              <UserAvatar source={{ uri: user.avatar_url }}></UserAvatar>
+              <UserAvatar source={{ uri: user.avatar_url ? user.avatar_url : defaultImage }}></UserAvatar>
             </ProfileButton>
           </View>
 
@@ -64,8 +67,8 @@ const Dashboard: React.FC = () => {
                 }, shadowOpacity: 0.36, shadowRadius: 6.68, elevation: 11,
               }}
               onPress={() => navigateToCreateAppointment(item.id)}>
-
-              <ProviderAvatar source={{ uri: item.avatar_url }}></ProviderAvatar>
+                {console.log(item.avatar_url)}
+              <ProviderAvatar source={{ uri: item.avatar_url === undefined || item.avatar_url === null ? defaultImage  : item.avatar_url }}></ProviderAvatar>
 
               <ProviderInfo>
                 <ProviderName>{item.name}</ProviderName>

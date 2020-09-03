@@ -19,6 +19,7 @@ justify-content: space-between;
 align-items: center;
 border-bottom-width: 2px;
 border-bottom-color: #131313;
+height: 80px;
 `;
 
 export const BackButton = styled.TouchableOpacity``;
@@ -82,11 +83,46 @@ height: 46px;
 background: #18CBC1;
 border-radius: 10px;
 align-items: center;
-margin: 0 24px;
+margin: 0 15px;
 justify-content: center;
 `;
 
 export const OpenDatePickerButtonText= styled.Text`
 font-size: 16px;
 color: #f4ede8;
+`;
+
+export const Schedule = styled.View`
+padding: 25px 0 16px;
+`;
+
+export const Section = styled.View`
+margin-bottom: 24px;
+`;
+
+export const SectionContent = styled.ScrollView.attrs({
+contentContainerStyle: {paddingHorizontal: 24},
+horizontal: true,
+showsHorizontalScrollIndicator: false
+})`
+`;
+
+export const SectionTitle = styled.Text`
+font-size: 17px;
+color: #3e3b47;
+font-family: 'RobotoSlab-Regular';
+padding-left: 27px;
+`;
+
+export const Hour = styled.View`
+padding: 12px;
+background: #e7e7e7;
+border-radius: 10px;
+margin-right: 8px;
+`;
+
+export const HourText = styled.Text`
+font-size: 16px;
+color: #131313;
+font-family: 'RobotoSlab-Regular'
 `;
