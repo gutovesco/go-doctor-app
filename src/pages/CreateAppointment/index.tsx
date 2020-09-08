@@ -24,7 +24,9 @@ import {
   SectionContent,
   Schedule,
   Hour,
-  HourText
+  HourText,
+  CreateAppointmentButton,
+  CreateAppointmentButtonText
 } from './styles'
 import api from '../../services/api';
 import { RectButton, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
@@ -48,7 +50,7 @@ interface AvailabilityItem {
 const CreateAppointment: React.FC = () => {
   const route = useRoute();
   const { user } = useAuth();
-  const { goBack } = useNavigation()
+  const { goBack, navigate } = useNavigation()
   const { providerId } = route.params as RouteParams;
 
   const [providers, setProviders] = useState<Provider[]>([])
@@ -112,6 +114,27 @@ const CreateAppointment: React.FC = () => {
       }
     })
   }, [availability])
+
+  const handleCreateAppointment = useCallback(async () => {
+    console.log('aaaaaaaaaa')
+    try{
+      const date = new Date(selectedDate)
+
+      date.setHours(selectedHour)
+      date.setMinutes(0)
+
+      await api.post('appointments', {
+        provider_id: selectedProvider,
+        date,
+      })
+
+      console.log('appointment criado')
+
+      navigate('AppointmentCreated', {date: date.getTime()})
+    }catch(err){
+      Alert.alert('Erro ao criar agendamento', 'Ocorreu um erro ao criar o agendamento, tente novamente.')
+    }
+  }, [navigate, selectedDate, selectedHour, selectedProvider])
 
   const afternoonAvailability = useMemo(() => {
     return availability.filter(({ hour }) => hour >= 12).map(({ hour, available }) => {
@@ -213,6 +236,10 @@ const CreateAppointment: React.FC = () => {
             </SectionContent>
           </Section>
         </Schedule>
+
+        <CreateAppointmentButton onPress={() => handleCreateAppointment()}>
+          <CreateAppointmentButtonText>Agendar</CreateAppointmentButtonText>
+        </CreateAppointmentButton>
       </ScrollView>
     </Container>
   );

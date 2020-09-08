@@ -107,6 +107,22 @@ showsHorizontalScrollIndicator: false
 })`
 `;
 
+export const CreateAppointmentButtonText = styled.Text`
+font-size: 16px;
+color: #f4ede8;
+font-family: 'RobotoSlab-Regular';
+`;
+
+export const CreateAppointmentButton = styled(RectButton)`
+height: 46px;
+background: #18CBC1;
+border-radius: 10px;
+align-items: center;
+margin: 0 15px;
+justify-content: center;
+`;
+
+
 export const SectionTitle = styled.Text`
 font-size: 17px;
 color: #3e3b47;
@@ -126,3 +142,6 @@ font-size: 16px;
 color: #131313;
 font-family: 'RobotoSlab-Regular'
 `;
+
+
+
