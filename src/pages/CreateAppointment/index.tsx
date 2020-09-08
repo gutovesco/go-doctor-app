@@ -116,7 +116,6 @@ const CreateAppointment: React.FC = () => {
   }, [availability])
 
   const handleCreateAppointment = useCallback(async () => {
-    console.log('aaaaaaaaaa')
     try{
       const date = new Date(selectedDate)
 

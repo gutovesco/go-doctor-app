@@ -68,7 +68,7 @@ const Dashboard: React.FC = () => {
               }}
               onPress={() => navigateToCreateAppointment(item.id)}>
                 {console.log(item.avatar_url)}
-              <ProviderAvatar source={{ uri: item.avatar_url }}></ProviderAvatar>
+              <ProviderAvatar source={{ uri: item.avatar_url !== undefined ? item.avatar_url : 'https://www.pngitem.com/pimgs/m/421-4212266_transparent-default-avatar-png-default-avatar-images-png.png' }}></ProviderAvatar>
 
               <ProviderInfo>
                 <ProviderName>{item.name}</ProviderName>
